@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aoudumber</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('./images/gradient-background-top.png') top center no-repeat,
+                  url('./images/gradient-background-bottom.png') bottom center no-repeat;
+      background-size: cover, cover;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-white">
+  <div class="flex flex-col items-center justify-center min-h-screen text-white px-4">
+    <h1 id="siteName" class="text-6xl font-extrabold drop-shadow-lg mb-8">Aoudumber</h1>
+    <p id="footerText" class="text-center max-w-xl text-gray-300">© 2024 Aoudumber. All rights reserved.</p>
+  </div>
+  <script>
+    // Load saved content from localStorage
+    window.onload = () => {
+      const savedName = localStorage.getItem('siteName');
+      if (savedName) {
+        document.getElementById('siteName').textContent = savedName;
+      }
+      const savedFooter = localStorage.getItem('footerText');
+      if (savedFooter) {
+        document.getElementById('footerText').textContent = savedFooter;
+      }
+    };
+  </script>
+</body>
+</html>
