@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aoudumber Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #1a202c;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-6 text-white">
+  <h1 class="text-4xl font-bold mb-6">Aoudumber Admin Panel</h1>
+  <form id="adminForm" class="w-full max-w-md bg-gray-800 p-6 rounded-lg shadow-lg">
+    <label for="siteName" class="block mb-2 font-semibold">Site Name:</label>
+    <input
+      type="text"
+      id="siteName"
+      name="siteName"
+      class="w-full p-2 mb-4 text-black rounded"
+      placeholder="Enter site name"
+      required
+    />
+    <label for="footerText" class="block mb-2 font-semibold">Footer Text:</label>
+    <input
+      type="text"
+      id="footerText"
+      name="footerText"
+      class="w-full p-2 mb-4 text-black rounded"
+      placeholder="Enter footer text"
+      required
+    />
+    <button
+      type="submit"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
+    >
+      Save Changes
+    </button>
+  </form>
+  <p id="message" class="mt-4 text-green-400"></p>
+
+  <script>
+    const siteNameInput = document.getElementById('siteName');
+    const footerTextInput = document.getElementById('footerText');
+    const message = document.getElementById('message');
+
+    // Load saved content from localStorage
+    window.onload = () => {
+      const savedName = localStorage.getItem('siteName');
+      if (savedName) {
+        siteNameInput.value = savedName;
+      }
+      const savedFooter = localStorage.getItem('footerText');
+      if (savedFooter) {
+        footerTextInput.value = savedFooter;
+      }
+    };
+
+    // Save content to localStorage on form submit
+    document.getElementById('adminForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newName = siteNameInput.value.trim();
+      const newFooter = footerTextInput.value.trim();
+      if (newName && newFooter) {
+        localStorage.setItem('siteName', newName);
+        localStorage.setItem('footerText', newFooter);
+        message.textContent = 'Site content updated successfully!';
+      }
+    });
+  </script>
+</body>
+</html>
